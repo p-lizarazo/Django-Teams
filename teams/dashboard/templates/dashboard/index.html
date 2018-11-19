@@ -1,0 +1,21 @@
+<h1>teams</h1>
+<section class="nav">
+</section>
+
+<section class="body-dashboard">
+    {% for board in boards %}
+        <div>
+            <h2>{{board.name}}</h2>
+        </div>
+    {% endfor %}
+</section>
+<section class="footer">
+    {% if message %}
+    {{message}}
+    {% endif %}
+    <form method="post" action="">
+        {% csrf_token %}
+        <input type="text" name="name">
+        <button type="submit">Save</button>
+    </form>
+</section>
