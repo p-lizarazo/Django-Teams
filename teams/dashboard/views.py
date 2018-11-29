@@ -64,9 +64,21 @@ def task_create(request,id, column_id):
         return redirect('tasks', id=id, column_id=column_id)
 
 
-def task_modify(request,id, column_id,task_id):
+def task_modify(request, id, column_id, task_id):
+    task = Task.objects.get(id=task_id)
     if request.method == 'GET':
-        pass
+        columns = Column.objects.filter(board_id=id)
+        context = {'task': task, 'columns': columns}
+        return render(request, 'dashboard/task_modify.html', context)
+    elif request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('comment')
+        column_id = request.POST.get('columns')
+        task.title = title
+        task.description = description
+        task.column = Column.objects.get(id=column_id)
+        task.save()
+        return redirect('board', id=id)
 
 
 def task_delete(request,id,column_id,task_id):

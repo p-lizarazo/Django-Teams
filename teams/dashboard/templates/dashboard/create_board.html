@@ -10,12 +10,13 @@
     <input type="text" name="name" id="">
     </div>
     <div class="row">
+
+        <label for=""> Select Team owner: </label>
         <select name="teams" id="teams">
             {% for team in teams %}
             <option value="{{team.id}}">{{team.name}}</option>
             {% endfor %}
         </select>
-        <label for=""> Select Team owner: </label>
 
 
     </div>

@@ -2,7 +2,32 @@
 
 {% if user.is_authenticated %}
 
-
+<div class="row">
+<form method="post" action="" id="task_form">
+    {% csrf_token %}
+    <div class="row">
+    <label for="task_form"> Task title: </label>
+    <input type="text" name="title" id="" value="{{task.title}}">
+    </div>
+    <div class="row">
+        <label for="task_form">Task Description: </label>
+        <textarea name="comment" form="task_form">{{task.description}}</textarea>
+    </div>
+    <div class="row">
+        <label for=""> Change column: </label>
+        <select name="columns" id="columns">
+            {% for column in columns %}
+            {% if column.id == task.column.id %}
+                <option value="{{column.id}}" selected >{{column.name}}</option>
+            {% else %}
+                <option value="{{column.id}}" >{{column.name}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit">Save</button>
+</form>
+</div>
 
 
 {% endif %}
