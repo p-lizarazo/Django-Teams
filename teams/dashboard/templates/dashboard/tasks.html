@@ -1,0 +1,26 @@
+{% include 'header.html' with tab=1%}
+
+{% if user.is_authenticated %}
+
+<a href="{% url 'task_create' id column_id %}">Create new Task</a>
+
+{% for task in tasks %}
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+    <h4 class="card-title">{{task.title}}</h4>
+    <p class="card-text">{{task.description}}</p>
+        <div>
+        <form action="{% url 'task_delete' id column_id task.id%}">
+        <button type="submit">Delete</button>
+        </form>
+        <form action="{% url 'task_modify' id column_id task.id%}">
+        <button type="submit">Modify</button>
+        </form>
+        </div>
+  </div>
+
+{% endfor %}
+
+
+{% endif %}
+
+{% include 'footer.html' %}

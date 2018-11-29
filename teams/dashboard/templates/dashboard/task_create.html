@@ -1,0 +1,22 @@
+{% include 'header.html' with tab=1%}
+
+{% if user.is_authenticated %}
+
+<div class="row">
+<form method="post" action="" id="task_form">
+    {% csrf_token %}
+    <div class="row">
+    <label for="task_form"> Task title: </label>
+    <input type="text" name="title" id="">
+    </div>
+    <div class="row">
+        <label for="task_form">Task Description: </label>
+        <textarea name="comment" form="task_form">Enter text here...</textarea>
+    </div>
+    <button type="submit">Save</button>
+</form>
+</div>
+
+{% endif %}
+
+{% include 'footer.html' %}

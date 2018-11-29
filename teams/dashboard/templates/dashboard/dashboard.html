@@ -1,0 +1,40 @@
+{% include 'header.html' with tab=1%}
+
+{% if user.is_authenticated %}
+
+<div class="row">
+    <a href="{% url 'board_create' %}">Create new Dashboard</a>
+</div>
+
+<div class="row">
+    {% for board in boards %}
+    <div class="col teams-list">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+          <div class="card-body">
+            <h3 class="card-title">{{board.name}}</h3>
+            <a href="{{board.id}}" class="btn btn-primary">Enter</a>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">login</a>
+
+
+{% endif %}
+{% include 'footer.html' %}
+
+
+
+
+
+
+
+
+
+
+
+{% include 'footer.html' %}

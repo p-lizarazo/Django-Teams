@@ -1,0 +1,26 @@
+{% include 'header.html' with tab=2 %}
+
+{% if user.is_authenticated %}
+
+
+<div class="form-group"></div>
+    <form method="post" action="">
+        <div class="row">
+        {% csrf_token %}
+        <label for="teamName"> Team's name: </label>
+        <input type="text" name="team_name" id="teamName">
+        </div>
+        <div class="row">
+        <label for="users">Associated users with the team: </label>
+        <select multiple class="form-control" id="users" name="team_users">
+            {% for user in users %}
+              <option value="{{user.id}}">{{user.username}}</option>
+            {% endfor %}
+        </select>
+            </div>
+        <button type="submit">Save</button>
+    </form>
+</div>
+{% endif %}
+
+{% include 'footer.html' %}

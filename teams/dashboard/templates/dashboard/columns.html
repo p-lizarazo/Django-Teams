@@ -1,0 +1,30 @@
+{% include 'header.html' with tab=1%}
+
+{% if user.is_authenticated %}
+
+<div class="row">
+    <a href="{% url 'column_create' id %}">Create new Column</a>
+</div>
+
+<div class="row">
+    {% for column in columns %}
+    <div class="col teams-list">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+          <div class="card-body">
+            <h3 class="card-title">{{column.name}}</h3>
+              {% for task in column.task_set.all %}
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                    <h4 class="card-title">{{task.title}}</h4>
+                    <p class="card-text">{{task.description}}</p>
+                  </div>
+              {% endfor %}
+            <a href="{% url 'tasks' id column.id %}" class="btn btn-primary">Add/Delete Tasks</a>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endif %}
+
+{% include 'footer.html' %}

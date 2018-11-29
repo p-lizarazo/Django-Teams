@@ -1,0 +1,19 @@
+{% include 'header.html' with tab=1%}
+
+{% if user.is_authenticated %}
+
+<div class="row">
+<form method="post" action="">
+    {% csrf_token %}
+    <div class="row">
+    <label for=""> Column name: </label>
+    <input type="text" name="name" id="">
+    </div>
+
+    <button type="submit">Save</button>
+</form>
+</div>
+
+{% endif %}
+
+{% include 'footer.html' %}

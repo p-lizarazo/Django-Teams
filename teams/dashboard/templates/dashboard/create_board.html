@@ -1,0 +1,28 @@
+{% include 'header.html' with tab=1%}
+
+{% if user.is_authenticated %}
+
+<div class="row">
+<form method="post" action="">
+    {% csrf_token %}
+    <div class="row">
+    <label for=""> Board name: </label>
+    <input type="text" name="name" id="">
+    </div>
+    <div class="row">
+        <select name="teams" id="teams">
+            {% for team in teams %}
+            <option value="{{team.id}}">{{team.name}}</option>
+            {% endfor %}
+        </select>
+        <label for=""> Select Team owner: </label>
+
+
+    </div>
+    <button type="submit">Save</button>
+</form>
+</div>
+
+{% endif %}
+
+{% include 'footer.html' %}
